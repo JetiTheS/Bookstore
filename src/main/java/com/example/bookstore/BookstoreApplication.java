@@ -20,15 +20,15 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner studentDemo(BookRepository repository) {
+	public CommandLineRunner bookDemo(BookRepository repository) {
 		return (args) -> {
 			log.info("tallennetaan pari kirjaa");
 			repository.save(new Book("Elämänkerta", "Minä", "2023", "12345", "30"));
 			repository.save(new Book("Joku", "Kate", "1992", "123", "50"));
 
 			log.info("Haetaan kaikki kirjat");
-			for (Book student : repository.findAll()) {
-				log.info(student.toString());
+			for (Book book : repository.findAll()) {
+				log.info(book.toString());
 			}
 
 		};
