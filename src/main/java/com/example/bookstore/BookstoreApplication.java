@@ -24,19 +24,20 @@ public class BookstoreApplication {
 	@Bean
 	public CommandLineRunner bookDemo(BookRepository repository, CategoryRepository categoryrepository) {
 		return (args) -> {
+
 			log.info("tallennetaan pari kirjaa ja kategoriat");
-			repository.save(new Book("Elämänkerta", "Minä", "2023", "12345", "30"));
-			repository.save(new Book("Joku", "Kate", "1992", "123", "50"));
+			Category category1 = new Category("Scifi");
+			Category category2 = new Category("Kauhu");
+			Category category3 = new Category("Fantasia");
+			Category category4 = new Category("Manga");
 
-			categoryrepository.save(new Category("Scifi"));
-			categoryrepository.save(new Category("Kauhu"));
-			categoryrepository.save(new Category("Fantasia"));
-			categoryrepository.save(new Category("Manga"));
+			categoryrepository.save(category1);
+			categoryrepository.save(category2);
+			categoryrepository.save(category3);
+			categoryrepository.save(category4);
 
-			log.info("Haetaan kaikki kategoriat");
-			for (Category category : categoryrepository.findAll()) {
-				log.info(category.toString());
-			}
+			repository.save(new Book("Elämänkerta", "Minä", "2023", "12345", "30", category2));
+			repository.save(new Book("Joku", "Kate", "1992", "123", "50", category3));
 
 			log.info("Haetaan kaikki kirjat");
 			for (Book book : repository.findAll()) {
