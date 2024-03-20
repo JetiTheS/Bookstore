@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.bookstore.domain.Book;
 import com.example.bookstore.domain.BookRepository;
+import com.example.bookstore.domain.BookUser;
+import com.example.bookstore.domain.BookUserRepository;
 import com.example.bookstore.domain.Category;
 import com.example.bookstore.domain.CategoryRepository;
 
@@ -22,7 +24,8 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner bookDemo(BookRepository bookrepository, CategoryRepository categoryrepository) {
+	public CommandLineRunner bookDemo(BookRepository bookrepository, CategoryRepository categoryrepository,
+			BookUserRepository bookUserRepository) {
 		return (args) -> {
 
 			log.info("tallennetaan pari kirjaa ja kategoriat");
@@ -43,6 +46,15 @@ public class BookstoreApplication {
 			for (Book book : bookrepository.findAll()) {
 				log.info(book.toString());
 			}
+
+			BookUser user1 = new BookUser("user", "$2a$10$2xH.zP7Wgsow9ThHQ60a5uDTe3zMGInWOC.Y.xY7jUk3d0X80VNG6",
+					"user@email.com",
+					"USER");
+			BookUser user2 = new BookUser("admin", "$2a$10$d05yBVyIS6rEYrVQiZFrw.rIzF5ylwR018N6IhusEFZWYPx.s1VxC",
+					"admin@email.com",
+					"ADMIN");
+			bookUserRepository.save(user1);
+			bookUserRepository.save(user2);
 
 		};
 	}
