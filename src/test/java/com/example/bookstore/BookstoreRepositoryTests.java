@@ -26,10 +26,9 @@ public class BookstoreRepositoryTests {
 
     @Test
     public void findByTitleShouldReturnBook() {
-        List<Book> books = bookRepository.findByTitle("Joku");
-
+        List<Book> books = bookRepository.findByTitle("Elämänkerta");
         assertThat(books).hasSize(1);
-        assertThat(books.get(0).getAuthor()).isEqualTo("Kate");
+        assertThat(books.get(0).getAuthor()).isEqualTo("Minä");
     }
 
     @Test
