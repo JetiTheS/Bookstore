@@ -28,7 +28,7 @@ public class BookstoreApplication {
 			BookUserRepository bookUserRepository) {
 		return (args) -> {
 
-			log.info("tallennetaan pari kirjaa ja kategoriat");
+			log.info("tallennetaan muutama kategoria");
 			Category category1 = new Category("Scifi");
 			Category category2 = new Category("Kauhu");
 			Category category3 = new Category("Fantasia");
@@ -38,6 +38,8 @@ public class BookstoreApplication {
 			categoryrepository.save(category2);
 			categoryrepository.save(category3);
 			categoryrepository.save(category4);
+
+			log.info("tallennetaan pari kirjaa");
 
 			bookrepository.save(new Book("Elämänkerta", "Minä", "2023", "12345", "30", category2));
 			bookrepository.save(new Book("Joku", "Kate", "1992", "123", "50", category3));
